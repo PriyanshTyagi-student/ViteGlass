@@ -5,75 +5,33 @@ const ResumeContext = createContext();
 
 const defaultState = {
   personalDetails: {
-    name: 'Jane Doe',
-    email: 'jane.doe@example.com',
-    phone: '+1 (555) 123-4567',
-    location: 'San Francisco, CA',
-    linkedin: 'linkedin.com/in/janedoe',
-    github: 'github.com/janedoe',
-    portfolio: 'janedoe.com',
-    summary: 'A highly motivated and results-driven professional with 5+ years of experience in building modern web applications. Passionate about beautiful UI and great user experiences.'
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    linkedin: '',
+    github: '',
+    portfolio: '',
+    summary: ''
   },
-  experience: [
-    {
-      id: 1,
-      company: 'Tech Innovators Inc.',
-      role: 'Senior Frontend Developer',
-      startDate: 'Jan 2021',
-      endDate: 'Present',
-      description: 'Led the development of the core SaaS platform. Improved performance by 40% and implemented a new design system using React and modern CSS.'
-    }
-  ],
-  education: [
-    {
-      id: 1,
-      institution: 'University of California, Berkeley',
-      degree: 'B.S. Computer Science',
-      startDate: 'Aug 2016',
-      endDate: 'May 2020',
-      description: 'Graduated with Honors. Specialized in Human-Computer Interaction.'
-    }
-  ],
-  projects: [
-    {
-      id: 1,
-      title: 'VitaGlass',
-      link: 'vitaglass.app',
-      description: 'A beautiful, client-side resume builder created with React and Vite.'
-    }
-  ],
-  skills: ['JavaScript', 'React', 'CSS', 'UI/UX Design', 'Vite', 'Node.js'],
-  certifications: [
-    {
-      id: 1,
-      name: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
-      date: '2023',
-      link: ''
-    }
-  ],
-  achievements: [
-    {
-      id: 1,
-      title: 'Employee of the Year',
-      date: '2022',
-      description: 'Awarded for outstanding contribution to the core platform redesign.'
-    }
-  ],
-  languages: [
-    { id: 1, language: 'English', proficiency: 'Native' },
-    { id: 2, language: 'Spanish', proficiency: 'Conversational' }
-  ],
-  interests: ['UI/UX Design', 'Open Source', 'Photography'],
+  experience: [],
+  education: [],
+  projects: [],
+  skills: [],
+  certifications: [],
+  achievements: [],
+  languages: [],
+  interests: [],
   settings: {
-    template: 'modern', // 'ats', 'developer', 'modern', 'executive'
+    template: 'modern', // 'ats', 'liquid-glass', 'modern'
     color: '#0A84FF',
-    font: 'Inter'
+    font: 'Inter',
+    density: 'standard'
   }
 };
 
 export function ResumeProvider({ children }) {
-  const [resumeData, setResumeData] = useLocalStorage('vitaglass_resume', defaultState);
+  const [resumeData, setResumeData] = useLocalStorage('vitaglass_resume_v2', defaultState);
 
   // Helper functions to update specific sections
   const updatePersonalDetails = (details) => {
