@@ -43,26 +43,35 @@ const Header = () => {
     <header className="app-header">
       <div className="app-logo">
         <Layers className="text-primary" size={24} color="var(--primary)" />
-        VitaGlass
+        <span className="hide-mobile">VitaGlass</span>
       </div>
       
-      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontSize: '13px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="header-stats" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontSize: '13px' }}>
           <div style={{ fontWeight: 600, color: percentage === 100 ? 'var(--primary)' : 'var(--text-primary)' }}>
-            {percentage}% Complete
+            {percentage}% <span className="hide-mobile">Complete</span>
           </div>
           {missing.length > 0 && (
-            <div style={{ color: 'var(--text-secondary)', fontSize: '11px', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div className="hide-mobile" style={{ color: 'var(--text-secondary)', fontSize: '11px', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               Missing: {missing.join(', ')}
             </div>
           )}
         </div>
         
-        <button className="btn-primary" onClick={handleExport}>
+        <button className="btn-primary header-export-btn" onClick={handleExport} style={{ padding: '8px 16px' }}>
           <Download size={18} />
-          Export PDF
+          <span className="hide-mobile">Export PDF</span>
         </button>
       </div>
+      
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 600px) {
+          .hide-mobile { display: none !important; }
+          .app-logo { gap: 0; }
+          .app-header { padding: 0 16px; gap: 8px; }
+          .header-export-btn { padding: 8px !important; border-radius: 50% !important; }
+        }
+      `}} />
     </header>
   );
 };
